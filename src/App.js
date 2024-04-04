@@ -1,12 +1,13 @@
 import LightStrip from './component/LightStrip';
+import DebugBLE from './component/debug/DebugBLE';
 
 import './App.css';
 
 function App() {
   return <>
-    <h1>Turing Smart-Lights</h1>
+    <h1>Turing Bluetooth Controller</h1>
     
-    <LightStrip />
+    <DebugBLE />
   </>
 }
 

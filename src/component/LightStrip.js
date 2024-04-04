@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import useLight from '../hook/useLightStrip'
+import useLight from '../hook/useBLEUART'
 
 
 export default function LightStrip() {
