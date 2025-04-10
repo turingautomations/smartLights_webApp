@@ -64,23 +64,23 @@ export default function LightStrip() {
 
   return <>
     <button onClick={getInfo}>Get Device Info</button>
-
+    
     <button onClick={getDevice}>Pair Device</button>
-
+    
     {info? <>
       <h2>Info</h2>
       <pre>
         {JSON.stringify(info, null, 2)}
       </pre>
     </>: null}
-
+    
     {device? <>
       <h2>Device</h2>
       <pre>
         {JSON.stringify(device, null, 2)}
       </pre>
     </>: null}
-
+    
     {server?.connected? <>
       <h2>Server</h2>
       <pre>
@@ -88,7 +88,7 @@ export default function LightStrip() {
       </pre>
       <button onClick={connect}>Connect Device</button>
     </>: null}
-
+    
     {services.length? <>
       <h2>Services</h2>
       <pre>

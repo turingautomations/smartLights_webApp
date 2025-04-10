@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react'
 import Device from './Device'
 import Server from './Server'
-import Services from './Services'
 
 
 const defaultFilters = [{name: "Smart-Lights"}]
@@ -9,7 +8,9 @@ const defaultFilters = [{name: "Smart-Lights"}]
 const defaultOptions = {
   acceptAllDevices: false,
   filters: defaultFilters,
-  // optionalServices: optionalServices,
+  optionalServices: [
+    '0000001f-0000-1000-8000-00805f9b34fb',
+  ],
 }
 
 
@@ -18,7 +19,6 @@ export default function LightStrip() {
   const [filters, setFilters] = useState(defaultFilters)
   const [options, setOptions] = useState(defaultOptions)
   const [server, setServer] = useState()
-  const [services, setServices] = useState([])
 
 
   const connectDevice = async()=>{
@@ -44,25 +44,9 @@ export default function LightStrip() {
   }
   
   
-  const setupServer = async()=>{
-    try {
-      const result = await server.getPrimaryServices()
-      
-      setServices(result)
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-
   useEffect(()=>{
     if (device) connectDevice().then(console.log).catch(console.error)
   }, [device])
-  
-  
-  useEffect(() => {
-    if (server) setupServer().then(console.log).catch(console.error)
-  }, [server])
 
 
   return <>
@@ -72,10 +56,6 @@ export default function LightStrip() {
     
     {server?.connected? <>
       <Server server={server} />
-    </>: null}
-    
-    {services.length? <>
-      <Services services={services} />
     </>: null}
   </>
 }
